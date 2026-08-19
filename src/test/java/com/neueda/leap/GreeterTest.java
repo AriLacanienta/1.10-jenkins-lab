@@ -2,6 +2,7 @@ package com.neueda.leap;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GreeterTest {
 
@@ -9,5 +10,10 @@ public class GreeterTest {
     void greetIncludesName() {
         Greeter greeter = new Greeter();
         assertEquals("Good day, Priya", greeter.greet("Priya"));
+    }
+
+    @Test
+    void meaninglessTest() {
+        assertTrue(true);
     }
 }
