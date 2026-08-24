@@ -16,10 +16,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
-            }
-            always {
                 setCommitStatus("pending","pending")
+
+                checkout scm
             }
         }
         stage('Build') {
