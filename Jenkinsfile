@@ -1,13 +1,3 @@
-void setCommitStatus(String message, String state) {
-    step([
-        $class: "GitHubCommitStatusSetter",
-        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/AriLacanienta/1.10-jenkins-lab"],
-        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
-        errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-        statusResultSource: [$class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
-    ])
-}
-
 pipeline {
     agent any
     tools {
@@ -16,8 +6,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                setCommitStatus("pending","pending")
-
                 checkout scm
             }
         }
@@ -43,11 +31,8 @@ pipeline {
         }
     }
     post {
-        success {
-            setCommitStatus("Build succeeded", "SUCCESS")
-        }
-        failure {
-            setCommitStatus("Build failed", "FAILURE")
+        always {
+            step([$class: 'GitHubCommitStatusSetter'])
         }
     }
 }
