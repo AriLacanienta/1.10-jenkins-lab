@@ -32,7 +32,9 @@ pipeline {
     }
     post {
         always {
-            step([$class: 'GitHubCommitStatusSetter'])
+            step([ $class: 'GitHubCommitStatusSetter',
+                reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/AriLacanienta/1.10-jenkins-lab']
+                ])
         }
     }
 }
