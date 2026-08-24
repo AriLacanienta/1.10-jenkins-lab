@@ -42,10 +42,10 @@ pipeline {
     }
     post {
         success {
-            setBuildStatus("Build succeeded", "SUCCESS")
+            setCommitStatus("Build succeeded", "SUCCESS")
         }
         failure {
-            setBuildStatus("Build failed", "FAILURE")
+            setCommitStatus("Build failed", "FAILURE")
         }
     }
 }
