@@ -4,7 +4,7 @@ import java.io.Console;
 
 public class Greeter {
     public String greet(String name) {
-        return "Howdy, " + name;
+        return "Howdy there mate, " + name;
     }
 
     public void doNothing(int num){
